@@ -32,7 +32,7 @@ union FileUID {
     uint64_t raw;
     struct {
         uint32_t i960;
-        uint32_t teensy;
+        uint32_t chipset;
     };
 };
 static_assert(sizeof(FileUID) == sizeof(uint64_t));
