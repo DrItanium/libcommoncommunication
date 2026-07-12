@@ -50,4 +50,11 @@ constexpr bool valid(GraphicsOpcode opcode) noexcept {
     }
 }
 
+struct GraphicsOperation final {
+    GraphicsOperation(GraphicsOpcode opcode, uint16_t a0 = 0, uint16_t a1 = 0, uint16_t a2 = 0, uint16_t a3 = 0, uint16_t a4 = 0, uint16_t a5 = 0, uint16_t a6 = 0) : op(opcode), args{a0, a1, a2, a3, a4, a5, a6 } { }
+    GraphicsOpcode op;
+    uint16_t args[7];
+};
+static_assert(sizeof(GraphicsOperation) == 16, "Graphics Operations are not possible on this target!");
+
 #endif // end !defined(__LIBCROSSCOMMUNICATION_GRAPHICS_COMMANDS_H__)
