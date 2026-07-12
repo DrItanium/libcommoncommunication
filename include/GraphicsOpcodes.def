@@ -20,34 +20,24 @@
 // ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#ifndef __LIBCROSSCOMMUNICATION_GRAPHICS_COMMANDS_H__
-#define __LIBCROSSCOMMUNICATION_GRAPHICS_COMMANDS_H__
-#include <cstdint>
-/**
- * @brief Take the first two characters in an ascii string and convert it into a 16-bit value.
- * @return the encoded 16-bit value
- * @param code The string to generate the encoded value from
- */
-constexpr uint16_t asciiEncodeTwo(const char code[2]) noexcept {
-    return static_cast<uint16_t>(code[0]) | (static_cast<uint16_t>(code[1]) << 8);
-}
-
-enum class GraphicsOpcode : uint16_t {
-    Invalid = 0x0000,
-#define X(action, str) action = asciiEncodeTwo( str ) ,
-#include "GraphicsOpcodes.def"
-#undef X
-};
-
-constexpr bool valid(GraphicsOpcode opcode) noexcept {
-    switch (opcode) {
-#define X(action, str) case GraphicsOpcode :: action : return true;
-#include "GraphicsOpcodes.def"
-#undef X
-
-        default:
-            return false;
-    }
-}
-
-#endif // end !defined(__LIBCROSSCOMMUNICATION_GRAPHICS_COMMANDS_H__)
+X(DrawCircle, "DC")
+X(FillCircle, "FC")
+X(DrawTriangle, "DT")
+X(FillTriangle, "FT")
+X(DrawEllipse, "DE")
+X(FillEllipse, "FE")
+X(DrawPixel, "DP")
+X(DrawRectangle, "DR")
+X(FillRectangle, "FR")
+X(DrawRoundedRectangle, "DU")
+X(FillRoundedRectangle, "FU")
+X(DrawRotatedRectangle, "DO")
+X(FillRotatedRectangle, "FO")
+X(ScreenFill, "SF")
+X(SetTextSize, "TS")
+X(DrawCharacter, "DH")
+X(DrawSquare, "DS")
+X(FillSquare, "FS")
+X(DrawLine, "DL")
+X(DrawFastVerticalLine, "VL")
+X(DrawFastHorizontalLine,"HL")
