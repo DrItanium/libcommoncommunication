@@ -57,4 +57,8 @@ struct GraphicsOperation final {
 };
 static_assert(sizeof(GraphicsOperation) == 16, "Graphics Operations are not possible on this target!");
 
+constexpr uint16_t color565_Adafruit(uint8_t red, uint8_t green, uint8_t blue) noexcept {
+    return ((red & 0xF8) << 8) | ((green & 0xFC) << 3) | (blue >> 3);
+}
+
 #endif // end !defined(__LIBCROSSCOMMUNICATION_GRAPHICS_COMMANDS_H__)
